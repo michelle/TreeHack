@@ -21,7 +21,7 @@ window.onload = function() {
   $(window).load(function() {
     $('#pushThisButton').click(function() {
       $('#semiRelevantInfo').slideToggle('slow', function() {
-        $('#showForm').fadeToggle('slow');
+        $('#showForm').animate({ 'opacity' : '1' });
       });
     });
     
@@ -32,7 +32,7 @@ window.onload = function() {
     });
     
     $('#smallify').click(function() {
-      $.post('results.html', {'code': editor.getSession().getValue()});
+      $.post('/transfercode', {'code': editor.getSession().getValue()});
     });
   });
 </script>
@@ -51,22 +51,17 @@ window.onload = function() {
 
 <div id="contentButNotHappy">
   <div id="semiRelevantInfo">
-    This is what this crap does, so please pay us a lot of money and shit.<br>
+    Pyception will grow your beautiful code into a beautiful tree.<br>
     <span id="pushThisButton" class="bigBlack">Try it now</span>
   </div>
+  <div id="showForm">
+  Please type your code below.
   <div id="containsCodeEditor">
   <div id="editor" style="height: 500px; width: 500px"></div>
   </div>
   <center><button class="bigBlack" id="smallify">Treeify Me!</button></center>
-  <div id="showForm">
   
-    <!--<form>
-      <textarea rows="20" cols="40" name="code" id="code">copy & paste your code here.</textarea>
-      <br><button class="bigBlack" id="smallify">Treeify Me!</button>
-    </form>-->
   </div>
-  
-  
 
   
 </div>
