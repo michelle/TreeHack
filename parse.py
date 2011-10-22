@@ -1,11 +1,8 @@
-import ast, sys
-from operator import add
+import ast
 
 globals = { "classes" : {}, "variables" : {}, "functions" : {} }
 
 def Hack( node, scope ):
-    #if hasattr( node, "lineno" ):
-    #    scope[ "lineno" ] = node.lineno
     node.Hack( scope )
 
 def DocHack( node, scope ):
@@ -48,8 +45,13 @@ def printStr( d, indent=0 ):
             printStr( val, indent + 1)
             print "%s}" % ( ' ' * indent * 5 )
 
+'''
 if __name__=='__main__':
     fileCode = ''.join( open( sys.argv[ 1 ] ).readlines() )
     parsedObj = ast.parse( fileCode )
     Hack( parsedObj, globals )
     printStr( globals )
+'''
+
+def HACK( text ):
+    Hack( ast.parse( text ) )
