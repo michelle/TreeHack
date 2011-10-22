@@ -2,6 +2,9 @@
     $('#pushThisButton').click(function() {
       $('#semiRelevantInfo').slideToggle('slow', function() {
         $('#editor, #containsCodeEditor').css({ 'height' : '500' });
+        var editor = ace.edit("editor");
+        var PythonMode = require("ace/mode/python").Mode;
+        editor.getSession().setMode(new PythonMode());
         $('#showForm').animate({ 'opacity' : '1' });
       });
     });
@@ -23,5 +26,9 @@
      }, function() {
       $(this).stop().animate({'background-color' : '#cb0030'});
     });
+    
+    $('#smallify').click(function() {
+      $.post('/transferCode/', '{"code":"""' + unescape(editor.getSession().getValue()) + '"""}');
+  });
     
   });

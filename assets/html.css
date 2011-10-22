@@ -106,10 +106,6 @@ a {
   line-height: 30px;
 }
 
-#editor {
-  height: 500px;
-}
-
 #treeOnMyPage {
   opacity: 0.2;
   z-index: 1;
