@@ -30,7 +30,7 @@
     $('#smallify').click(function() {
       $.post('/transferCode/', '{"code":"""' + unescape(editor.getSession().getValue()) + '"""}');
       $.get('/transferCode/', function(code) {
-        window.location.replace("/" + code);
+        window.location.href = "/" + code;
       });
   });
     
