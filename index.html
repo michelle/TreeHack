@@ -1,0 +1,76 @@
+<!DOCTYPE HTML> 
+<html lang="en"> 
+<head> 
+<title>Tree Hack</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta http-equiv="Content-Language" content="en-us"> 
+
+<link href="html.css" rel="stylesheet" type="text/css"> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
+<script type="text/javascript" src="jquery.color.js"></script>
+<script src="ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="mode-python.js" type="text/javascript" charset="utf-8"></script>
+<script>
+window.onload = function() {
+  var editor = ace.edit("editor");
+  var PythonMode = require("ace/mode/python").Mode;
+  editor.getSession().setMode(new PythonMode());
+};
+</script>
+<script>
+  $(window).load(function() {
+    $('#pushThisButton').click(function() {
+      $('#semiRelevantInfo').slideToggle('slow', function() {
+        $('#showForm').fadeToggle('slow');
+      });
+    });
+    
+    $('.bigBlack').hover(function() {
+      $(this).stop().animate({'background-color': '#67ad4b'});
+     }, function() {
+      $(this).stop().animate({'background-color' : '#000'});
+    });
+    
+    $('#smallify').click(function() {
+      $.post('results.html', {'code': editor.getSession().getValue()});
+    });
+  });
+</script>
+</head>
+
+<body>
+<div id="eighteenAndUnderBar">
+  <a href="index.html">Home</a>
+  <a href="results.html">Saved</a>
+  <a href="nonexistant.html">About</a>
+</div>
+
+<div id="title">
+  PYCEPTION
+</div>
+
+<div id="contentButNotHappy">
+  <div id="semiRelevantInfo">
+    This is what this crap does, so please pay us a lot of money and shit.<br>
+    <span id="pushThisButton" class="bigBlack">Try it now</span>
+  </div>
+  <div id="containsCodeEditor">
+  <div id="editor" style="height: 500px; width: 500px"></div>
+  </div>
+  <center><button class="bigBlack" id="smallify">Treeify Me!</button></center>
+  <div id="showForm">
+  
+    <!--<form>
+      <textarea rows="20" cols="40" name="code" id="code">copy & paste your code here.</textarea>
+      <br><button class="bigBlack" id="smallify">Treeify Me!</button>
+    </form>-->
+  </div>
+  
+  
+
+  
+</div>
+
+</body>
+
+</html>
