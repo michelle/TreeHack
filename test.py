@@ -1,8 +1,15 @@
-class x:
-    ''' this is a class '''
-    def foo(self):
-        "hi this function does nothing"
+globalVARx = 3
+
+class classX:
+    "This is a class"
+    classVarY = 3
+    def classFunctionFoo(self):
+        "This is a class Function"
         pass
+
+def globalFunctionBar():
+    "This is a global Function"
+
 #    def bar(self):
 #        pass
 #
