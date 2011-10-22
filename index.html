@@ -1,7 +1,7 @@
 <!DOCTYPE HTML> 
 <html lang="en"> 
 <head> 
-<title>Tree Hack</title> 
+<title>Pyception</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 <meta http-equiv="Content-Language" content="en-us"> 
 
@@ -10,31 +10,13 @@
 <script type="text/javascript" src="assets/jquery.color.js"></script>
 <script src="assets/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="assets/mode-python.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
 <script>
 window.onload = function() {
   var editor = ace.edit("editor");
   var PythonMode = require("ace/mode/python").Mode;
   editor.getSession().setMode(new PythonMode());
 };
-</script>
-<script>
-  $(window).load(function() {
-    $('#pushThisButton').click(function() {
-      $('#semiRelevantInfo').slideToggle('slow', function() {
-        $('#showForm').animate({ 'opacity' : '1' });
-      });
-    });
-    
-    $('.bigBlack').hover(function() {
-      $(this).stop().animate({'background-color': '#67ad4b'});
-     }, function() {
-      $(this).stop().animate({'background-color' : '#000'});
-    });
-    
-    $('#smallify').click(function() {
-      $.post('/transfercode', {'code': editor.getSession().getValue()});
-    });
-  });
 </script>
 </head>
 
@@ -45,9 +27,10 @@ window.onload = function() {
   <a href="nonexistant.html">About</a>
 </div>
 
-<div id="title">
+<a href="index.html"><div id="title">
   PYCEPTION
 </div>
+</a>
 
 <div id="contentButNotHappy">
   <div id="semiRelevantInfo">

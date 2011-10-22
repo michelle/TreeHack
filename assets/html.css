@@ -28,7 +28,7 @@ html, body {
   font-size: 30px;
   text-align: center;
   position: relative;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px dashed #000;
   top: 10px;
   color: #000;
 }
@@ -42,7 +42,7 @@ html, body {
   text-decoration: none;
 }
 
-#subtitle, #title {
+#title {
   text-transform: uppercase;
   font-family: 'Amatic SC', cursive;
   font-size: 150px;
@@ -50,11 +50,12 @@ html, body {
   color: #000;
   line-height: 150px;
   padding: 10px;
+  margin: 0 auto;
+  width: 500px;
 }
 
-#subtitle {
-  font-size: 50px;
-  line-height: 80px;
+a {
+  text-decoration: none;
 }
 
 #showForm {
