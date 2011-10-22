@@ -17,7 +17,7 @@ $(window).load( function() {
   var PythonMode = require("ace/mode/python").Mode;
   editor.getSession().setMode(new PythonMode());
   $('#smallify').click(function() {
-      $.post('/transferCode', "{'code':" + unescape(editor.getSession().getValue()) + "}");
+      $.post('/transferCode/', "{'code':" + unescape(editor.getSession().getValue()) + "}");
   });
 });
 </script>
