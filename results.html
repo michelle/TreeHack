@@ -10,39 +10,18 @@
 <script type="text/javascript" src="assets/jquery.color.js"></script>
 <script src="assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
 
-<script>
-  $(window).load(function() {
-    $('#pushThisButton').click(function() {
-      $('#semiRelevantInfo').slideToggle('slow', function() {
-        $('#showForm').fadeToggle('slow');
-      });
-    });
-    
-    $('.bigBlack').hover(function() {
-      $(this).stop().animate({'background-color': '#67ad4b'});
-     }, function() {
-      $(this).stop().animate({'background-color' : '#000'});
-    });
-    
-    $('#smallify').click(function() {
-      $.post('results.html', $('#code').serializeArray()[0].value);
-    });
-  });
-</script>
-
 <body>
 <div id="eighteenAndUnderBar">
   <a href="index.html">Home</a>
   <a href="results.html">Saved</a>
   <a href="nonexistant.html">About</a>
 </div>
+
 <div id="contentButNotSad">
   <div id="treeOnMyPage">
     <img src="assets/tree.png" class="left"> 
   </div>
-  
 </div>
-
 </body>
 
 </html>
