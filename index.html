@@ -1,0 +1,57 @@
+<!DOCTYPE HTML> 
+<html lang="en"> 
+<head> 
+<title>Pyception</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta http-equiv="Content-Language" content="en-us"> 
+
+<link href="assets/html.css" rel="stylesheet" type="text/css"> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
+<script type="text/javascript" src="assets/jquery.color.js"></script>
+<script src="assets/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/mode-python.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
+<script>
+$(window).load( function() {
+  var editor = ace.edit("editor");
+  var PythonMode = require("ace/mode/python").Mode;
+  editor.getSession().setMode(new PythonMode());
+  $('#smallify').click(function() {
+      $.post('/transferCode/', '{"code":"""' + unescape(editor.getSession().getValue()) + '"""}');
+  });
+});
+</script>
+</head>
+
+<body>
+<div id="eighteenAndUnderBar">
+  <a href="index.html">Home</a>
+  <a href="results.html">Saved</a>
+  <a href="nonexistant.html">About</a>
+</div>
+
+<a href="index.html"><div id="title">
+  PYCEPTION
+</div>
+</a>
+
+<div id="contentButNotHappy">
+  <div id="semiRelevantInfo">
+    Pyception will grow your beautiful code into a beautiful tree.<br>
+    <span id="pushThisButton" class="bigBlack">Try it now</span>
+  </div>
+  <div id="showForm">
+  Please type your code below.
+  <div id="containsCodeEditor">
+  <div id="editor" style="height: 500px; width: 500px"></div>
+  </div>
+  <center><button class="bigBlack" id="smallify">Treeify Me!</button></center>
+  
+  </div>
+
+  
+</div>
+
+</body>
+
+</html>
