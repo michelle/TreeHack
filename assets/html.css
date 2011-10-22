@@ -103,4 +103,8 @@ html, body {
   height: 500px;
   line-height: 30px;
 }
+
+#treeOnMyPage {
+  opacity: 0.2;
+}
   
