@@ -1,9 +1,12 @@
-import ast
+import ast, sys
 
 globals = { "classes" : {}, "variables" : {}, "functions" : {} }
 
 def Hack( node, scope ):
-    node.Hack( scope )
+    if hasattr( node, "Hack" ):
+        node.Hack( scope )
+    else:
+        print "AHH NODE", node, "Doesnt have HACK METHOD"
 
 def DocHack( node, scope ):
     return node.doc( scope ) if hasattr( self.body[0], "Doc" ) else ""
@@ -28,7 +31,31 @@ def ExprDoc( self, scope ):
     scope["doc"] = self.value.s or ""
 
 def AssignHack( self, scope ):
-    scope["variables"][ self.targets[0].id ] = { "lineno": self.lineno }
+    for target in self.targets:
+        target.Variablize( scope )
+
+def NameVariablize( self, scope ):
+    scope[ "variables" ][ self.id ] = { "lineno": self.lineno }
+
+def TupleVariablize( self, scope ):
+    for name in self.elts:
+        name.Variablize( scope )
+
+def AttributeVariablize( self, scope ):
+    scope[ "variables" ][ self.Id() ] = ""
+
+def NameId( self ):
+    return self.id
+
+def AttributeId( self ):
+    return self.value.Id() + "." + self.attr
+
+ast.Name.Id = NameId
+ast.Attribute.Id = AttributeId
+
+ast.Name.Variablize = NameVariablize
+ast.Tuple.Variablize = TupleVariablize
+ast.Attribute.Variablize = AttributeVariablize
 
 ast.Expr.Doc = ExprDoc
 ast.Module.Hack = ModuleHack
@@ -41,17 +68,14 @@ def printStr( d, indent=0 ):
         print "%s%s" % ( ' ' * indent * 5 , d )
     else:
         for key, val in d.items():
-            print "%s{%s : " % ( ' ' * indent * 5 , key )
+            print "%s{ %s : " % ( ' ' * indent * 5 , key )
             printStr( val, indent + 1)
             print "%s}" % ( ' ' * indent * 5 )
 
-'''
-if __name__=='__main__':
-    fileCode = ''.join( open( sys.argv[ 1 ] ).readlines() )
-    parsedObj = ast.parse( fileCode )
-    Hack( parsedObj, globals )
-    printStr( globals )
-'''
 
 def HACK( text ):
-    Hack( ast.parse( text ) )
+    Hack( ast.parse( text ), globals )
+
+if __name__=='__main__':
+    HACK( ''.join( open( sys.argv[ 1 ] ).readlines() ) )
+    printStr( globals )
