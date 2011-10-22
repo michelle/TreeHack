@@ -20,6 +20,9 @@ def ImportHack( self, scope ):
     for name in self.names:
         name.Variablize( scope )
 
+def ImportFormHack( self, scope ):
+    pass # NOT SURE WHAT TO DO..
+    
 def ClassHack( self, scope ):
     classScope = scope[ "classes" ][ self.name ] = { "variables" : {}, "functions" : {}, "lineno" : self.lineno, "doc" : ast.get_docstring( self ) }
     map( lambda node : Hack( node, classScope ), self.body )
@@ -71,7 +74,6 @@ ast.Assign.Hack = AssignHack
 ast.If.Hack = IfHack
 ast.Pass.Hack = ast.Assert.Hack = ast.Raise.Hack = ast.Print.Hack = ast.AugAssign.Hack = ast.Delete.Hack = ast.Expr.Hack = lambda self, scope: None
 
-
 def printStr( d, indent=0 ):
     if type( d ) != dict:
         print "%s%s" % ( ' ' * indent * 5 , d )
@@ -84,6 +86,7 @@ def printStr( d, indent=0 ):
 
 def HACK( text ):
     Hack( ast.parse( text ), globals )
+    return globals
 
 if __name__=='__main__':
     HACK( ''.join( open( sys.argv[ 1 ] ).readlines() ) )
