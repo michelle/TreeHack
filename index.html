@@ -13,11 +13,12 @@
 <script src="assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
 <script>
   $(window).load(function() {
-  
+    var editor;
+    
     $('#pushThisButton').click(function() {
       $('#semiRelevantInfo').slideToggle('slow', function() {
         $('#editor, #containsCodeEditor').css({ 'height' : '500' });
-        var editor = ace.edit("editor");
+        editor = ace.edit("editor");
         var PythonMode = require("ace/mode/python").Mode;
         editor.getSession().setMode(new PythonMode());
         $('#showForm').animate({ 'opacity' : '1' });
