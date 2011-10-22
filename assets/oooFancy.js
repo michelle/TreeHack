@@ -27,11 +27,4 @@
       $(this).stop().animate({'background-color' : '#cb0030'});
     });
     
-    $('#smallify').click(function() {
-      $.post('/transferCode/', '{"code":"""' + unescape(editor.getSession().getValue()) + '"""}');
-      $.get('/transferCode/', function(code) {
-        window.location.href = "/" + code;
-      });
-  });
-    
   });

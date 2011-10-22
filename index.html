@@ -11,7 +11,17 @@
 <script src="assets/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="assets/mode-python.js" type="text/javascript" charset="utf-8"></script>
 <script src="assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
-
+<script>
+  $(window).load(function() {
+    $('#smallify').click(function() {
+      $.post('/transferCode/', '{"code":"""' + unescape(editor.getSession().getValue()) + '"""}');
+      $.get('/transferCode/', function(code) {
+        window.location.href = "/" + code;
+      });
+    });
+  });
+    
+</script>
 </head>
 
 <body>
