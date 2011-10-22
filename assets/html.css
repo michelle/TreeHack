@@ -107,5 +107,6 @@ a {
 
 #treeOnMyPage {
   opacity: 0.2;
+  z-index: 1;
 }
   
