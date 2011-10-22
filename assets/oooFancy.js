@@ -11,10 +11,6 @@
       $(this).stop().animate({'background-color' : '#000'});
     });
     
-    $('#smallify').click(function() {
-      $.post('/transferCode', {'code': editor.getSession().getValue()});
-    });
-    
     $('#title, #eighteenAndUnderBar a').hover(function() {
       $(this).stop().animate({'color': '#67ad4b'});
      }, function() {

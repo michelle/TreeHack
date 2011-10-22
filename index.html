@@ -12,11 +12,14 @@
 <script src="assets/mode-python.js" type="text/javascript" charset="utf-8"></script>
 <script src="assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
 <script>
-window.onload = function() {
+$(window).load( function() {
   var editor = ace.edit("editor");
   var PythonMode = require("ace/mode/python").Mode;
   editor.getSession().setMode(new PythonMode());
-};
+  $('#smallify').click(function() {
+      $.post('/transferCode', {'code': editor.getSession().getValue()});
+  });
+});
 </script>
 </head>
 
