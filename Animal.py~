@@ -1,0 +1,34 @@
+class Animal:
+    self.name = "animal"
+    def __init__( self ):
+        pass
+        
+    def talk( self ):
+        return "hi i am an %s" % self.name
+
+class Dog( Animal ):
+    self.name = "dog"
+    
+    def bark( self ):
+        return "WOff"
+
+class K9( Dog ):
+    self.name = "Kannine"
+
+    def bark( self ):
+        return "GrrRR WOFF!"
+
+
+animal = Animal()
+dog = Dog()
+k9 = k9()
+
+animals = [ animal, dog, k9 ]
+dogs = [ dog, k9 ]
+
+for animal in animals:
+    print animal.talk()
+
+for dog in dogs:
+    print dog.bark()
+

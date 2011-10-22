@@ -1,32 +1,24 @@
- <!DOCTYPE HTML> 
+<!DOCTYPE HTML> 
 <html lang="en"> 
 <head> 
 <title>Pyception</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 <meta http-equiv="Content-Language" content="en-us"> 
 
-<link href="http://3wt.us/TreeHack/assets/html.css" rel="stylesheet" type="text/css"> 
+<link href="../assets/html.css" rel="stylesheet" type="text/css"> 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
-<script type="text/javascript" src="http://3wt.us/TreeHack/assets/jquery.color.js"></script>
-<script src="http://3wt.us/TreeHack/assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
-
-<script src="http://3wt.us/TreeHack/assets/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="http://3wt.us/TreeHack/assets/mode-python.js" type="text/javascript" charset="utf-8"></script>
-
-<meta property="og:title" content="Pyception" />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="" />
-<meta property="og:site_name" content="Pyception" />
-<meta property="fb:admins" content="1295520723" />
-
+<script type="text/javascript" src="../assets/jquery.color.js"></script>
+<script src="../assets/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="../assets/mode-python.js" type="text/javascript" charset="utf-8"></script>
+<script src="../assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
 <script>
-$(window).load( function() {
+  $(window).load( function() {
     draw = function(types, div, _x, _y) {
       var count = 0;
       for (var name in types) {
         count += 1;
       }
-	  _x = _x - (count * 150);
+	  _x = _x - (count * 100);
       for (var name in types) {
         var alttext = types[name]['doc'];
 		_x += 100;
@@ -41,19 +33,9 @@ $(window).load( function() {
         
         types[name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: _x + 15, y: _y + 15, fruit: types[name]}).addClass(div).attr('title',tit).css({left: _x, top: _y}).toggle(function(){
           var data = $(this).data('info');
-           if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
-         expand(data.fruit, data.x, data.y);
+          expand(data.fruit, data.x, data.y);
         }, function(){
           var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
           removeChildren(data.fruit);
         }).appendTo("#growsOnTrees");
       }
@@ -62,6 +44,7 @@ $(window).load( function() {
         $(this).stop().animate({'opacity': '1'});
       }, function() {
         $('#growsOnTrees div').stop().animate({'opacity': '.6'});
+        $(this).stop().animate({'opacity' : '.6'});
       });
 	  return _y;
     }
@@ -87,19 +70,9 @@ $(window).load( function() {
           
           current['classes'][name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: newX, y: newY, fruit: current["classes"][name]}).addClass("classFruit").attr('title',tit).css({left: newX, top: newY}).toggle(function(){
            var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
            expand(data.fruit, data.x, data.y);
           }, function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             removeChildren(data.fruit);
           }).appendTo("#growsOnTrees");
         }
@@ -120,19 +93,9 @@ $(window).load( function() {
           
           current['functions'][name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: newX, y: newY, fruit: current["functions"][name]}).addClass("methodFruit").attr('title',tit).css({left: newX, top: newY}).toggle(function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             expand(data.fruit, data.x, data.y);
           }, function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             removeChildren(data.fruit);
           }).appendTo("#growsOnTrees");
         }
@@ -153,19 +116,9 @@ $(window).load( function() {
           
           current['variables'][name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: newX, y: newY, fruit: current["variables"][name]}).addClass("varFruit").css({left: newX, top: newY}).toggle(function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             expand(data.fruit, data.x, data.y);
           }, function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             removeChildren(data.fruit);
           }).appendTo("#growsOnTrees");
           
@@ -175,7 +128,8 @@ $(window).load( function() {
         $('#growsOnTrees div').stop().animate({'opacity': '.2'});
         $(this).stop().animate({'opacity': '1'});
       }, function() {
-        $('#growsOnTrees div').stop().animate({'opacity': '.6'});
+        $('#growsOnTrees div').stop().animate({'opacity': '1'});
+        $(this).stop().animate({'opacity' : '.6'});
       });
     }
     
@@ -199,65 +153,85 @@ $(window).load( function() {
         }
       }
     }
+    
+      $('#pushThisButton').click(function() {
+        $('#semiRelevantInfo').slideToggle('slow', function() {
+          $('#editor, #containsCodeEditor').css({ 'height' : '500px' });
+          editor = ace.edit("editor");
+          var PythonMode = require("ace/mode/python").Mode;
+          editor.getSession().setMode(new PythonMode());
+          $('#showForm').animate({ 'opacity' : '1' });
+        });
+      });
 
-    var lastIndex = window.location.pathname.length - 1;
-    var id = window.location.pathname.substring(1, lastIndex);
-    $.get('../transferCode/', {'ID': id}, function(dic) {
-      code = dic['raw'];
-      all = dic['parsed'];
+      $('#smallify').click(function() {
+        $.post('/transferCode/', {'code': editor.getSession().getValue()}, function(dic) {
+          all = dic['parsed'];
+          id = dic['ID'];
+          console.log( all );
       
-      draw(all.classes, 'classFruit', 270, -Math.floor(Math.random()*50) + 175);
-      draw(all.variables, 'varFruit', 270, -Math.floor(Math.random()*50) + 375);
-      draw(all.functions, 'methodFruit', 270, -Math.floor(Math.random()*50) + 315);
-      snippet = ace.edit("snippet");
-      var PythonMode = require("ace/mode/python").Mode;
-      snippet.getSession().setMode(new PythonMode());
-      snippet.getSession().setValue(code);
-      snippet.setReadOnly(true);
-      $('#rightSide').append('<div id="fb-root"></div>');
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-      $('#rightSide').append('<div class="fb-like" data-href="'+window.location.href+'" data-send="true" data-width="450" data-show-faces="true" data-font="verdana"></div>');
-    });
+        var _y = draw(all.classes, 'classFruit', 500, -Math.floor(Math.random()*50) + 175);
+        _y = draw(all.variables, 'varFruit', 500, -Math.floor(Math.random()*50) + 375);
+        _y = draw(all.functions, 'methodFruit', 500, -Math.floor(Math.random()*50) + 315);
+          $('#share').append('<textarea>http://5.80.171.76:8000/'+id+'</textarea>');
+        });
+        
+        $('#showFrom').animate({ 'opacity' : '0' });
+        $('#editor, #containsCodeEditor').css({ 'height' : '0px' });
+      
+        $('#contentButNotHappy').fadeToggle('slow');
+        $('#contentAndNotSad').fadeToggle('slow');
+      
+      });
 
-});
+  });
+
 </script>
 </head>
 
 <body>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
 <div id="eighteenAndUnderBar">
   <a href="/">Home</a>
-  <a href="/about">About</a>
+  <a href="nonexistant.html">About</a>
 </div>
 
-<div id="contentAndNotHuan">
+<div id="contentButNotHappy">
+
+  <div id="semiRelevantInfo">
+  
+  <a href="/"><div id="title">
+  PYCEPTION
+</div>
+</a>
+    Pyception will grow your beautiful code into a beautiful tree.<br>
+    <span id="pushThisButton" class="bigBlack">Try it now</span>
+  </div>
+  <div id="showForm">
+  Please type your code below.
+  <div id="containsCodeEditor">
+  <div id="editor"></div>
+  </div>
+  <center><button class="bigBlack" id="smallify">Treeify Me!</button></center>
+  
+  </div>
+
+  
+</div>
+
+<div id="contentAndNotSad">
   <div id="treeOnMyPage">
-    <img src="http://3wt.us/TreeHack/assets/tree.png" class="left"> 
+    <img src="../assets/tree.png"> 
   </div>
   
   <div id="growsOnTrees">
     <!-- dynamically filled -->
   </div>
   
-  <div id="othahContainer">
-  alt + click to see which line each element comes from!
-  <div id="containsSnippet" class="right">
-  <div id="snippet"></div>
-  </div></div>
+  <div id="share">
+    Share your code: <br>
+  </div>
 </div>
+
 </body>
 
 </html>

@@ -12,10 +12,4 @@
       $(this).stop().animate({'color' : '#000'});
     });
     
-    $('.fruit').hover(function() {
-      $(this).stop().animate({'background-color': '#f390a7'});
-     }, function() {
-      $(this).stop().animate({'background-color' : '#cb0030'});
-    });
-    
   });

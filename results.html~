@@ -5,13 +5,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 <meta http-equiv="Content-Language" content="en-us"> 
 
-<link href="http://3wt.us/TreeHack/assets/html.css" rel="stylesheet" type="text/css"> 
+<link href="../assets/html.css" rel="stylesheet" type="text/css"> 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
-<script type="text/javascript" src="http://3wt.us/TreeHack/assets/jquery.color.js"></script>
-<script src="http://3wt.us/TreeHack/assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../assets/jquery.color.js"></script>
+<script src="../assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
 
-<script src="http://3wt.us/TreeHack/assets/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="http://3wt.us/TreeHack/assets/mode-python.js" type="text/javascript" charset="utf-8"></script>
+<script src="../assets/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="../assets/mode-python.js" type="text/javascript" charset="utf-8"></script>
 
 <meta property="og:title" content="Pyception" />
 <meta property="og:type" content="website" />
@@ -41,19 +41,9 @@ $(window).load( function() {
         
         types[name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: _x + 15, y: _y + 15, fruit: types[name]}).addClass(div).attr('title',tit).css({left: _x, top: _y}).toggle(function(){
           var data = $(this).data('info');
-           if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
-         expand(data.fruit, data.x, data.y);
+          expand(data.fruit, data.x, data.y);
         }, function(){
           var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
           removeChildren(data.fruit);
         }).appendTo("#growsOnTrees");
       }
@@ -87,19 +77,9 @@ $(window).load( function() {
           
           current['classes'][name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: newX, y: newY, fruit: current["classes"][name]}).addClass("classFruit").attr('title',tit).css({left: newX, top: newY}).toggle(function(){
            var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
            expand(data.fruit, data.x, data.y);
           }, function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             removeChildren(data.fruit);
           }).appendTo("#growsOnTrees");
         }
@@ -120,19 +100,9 @@ $(window).load( function() {
           
           current['functions'][name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: newX, y: newY, fruit: current["functions"][name]}).addClass("methodFruit").attr('title',tit).css({left: newX, top: newY}).toggle(function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             expand(data.fruit, data.x, data.y);
           }, function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             removeChildren(data.fruit);
           }).appendTo("#growsOnTrees");
         }
@@ -153,19 +123,9 @@ $(window).load( function() {
           
           current['variables'][name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: newX, y: newY, fruit: current["variables"][name]}).addClass("varFruit").css({left: newX, top: newY}).toggle(function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             expand(data.fruit, data.x, data.y);
           }, function(){
             var data = $(this).data('info');
-          if ( event.altKey ) {
-             snippet.gotoLine( data.fruit.lineno);
-          }
-
-
             removeChildren(data.fruit);
           }).appendTo("#growsOnTrees");
           
@@ -245,15 +205,14 @@ $(window).load( function() {
 
 <div id="contentAndNotHuan">
   <div id="treeOnMyPage">
-    <img src="http://3wt.us/TreeHack/assets/tree.png" class="left"> 
+    <img src="../assets/tree.png" class="left"> 
   </div>
   
   <div id="growsOnTrees">
     <!-- dynamically filled -->
   </div>
   
-  <div id="othahContainer">
-  alt + click to see which line each element comes from!
+  <div id="rightSide" class="right">
   <div id="containsSnippet" class="right">
   <div id="snippet"></div>
   </div></div>
