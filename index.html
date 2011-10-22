@@ -13,7 +13,7 @@
 <script src="assets/oooFancy.js" type="text/javascript" charset="utf-8"></script>
 <script>
   $(window).load(function() {
-    var editor;
+    
     
     $('#pushThisButton').click(function() {
       $('#semiRelevantInfo').slideToggle('slow', function() {
@@ -26,10 +26,10 @@
     });
     
     $('#smallify').click(function() {
-      $.post('/transferCode/', '{"code":"""' + unescape(editor.getSession().getValue()) + '"""}');
-      $.get('/transferCode/', function(code) {
-        window.location.href = "/" + code;
-      });
+      $.post('/transferCode/', {'code': editor.getSession().getValue()}, 
+        function(code) {
+          window.location.href = "/" + code;
+        });
     });
   });
     
