@@ -93,20 +93,41 @@ a {
   padding-bottom: 100px;
   width: 800px;
   margin: 0 auto;
+  position: relative;
 }
 
 .left {
   float: left;
 }
 
-#containsCodeEditor {
+#editor, #containsCodeEditor {
   width: 500px;
-  height: 500px;
+  height: 0px;
   line-height: 30px;
+}
+
+#editor {
+  height: 500px;
 }
 
 #treeOnMyPage {
   opacity: 0.2;
   z-index: 1;
+}
+
+.fruit {
+  background-color: #cb0030;
+  cursor: pointer;
+  border-radius: 25px;
+  font-size: 15px;
+  min-height: 15px;
+  color: #fff;
+  padding: 5px 15px;
+  position: absolute;
+}
+
+#temp {
+  top: 50px;
+  left: 200px;
 }
   

@@ -1,6 +1,7 @@
   $(window).load(function() {
     $('#pushThisButton').click(function() {
       $('#semiRelevantInfo').slideToggle('slow', function() {
+        $('#editor, #containsCodeEditor').css({ 'height' : '500' });
         $('#showForm').animate({ 'opacity' : '1' });
       });
     });
@@ -16,4 +17,11 @@
      }, function() {
       $(this).stop().animate({'color' : '#000'});
     });
+    
+    $('.fruit').hover(function() {
+      $(this).stop().animate({'background-color': '#f390a7'});
+     }, function() {
+      $(this).stop().animate({'background-color' : '#cb0030'});
+    });
+    
   });
