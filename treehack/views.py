@@ -16,7 +16,7 @@ def GiveGetCode(request):
                # disabling this for now, before I set up db
                # parsed = HACK(request.POST["code"])
                # thiscode = Code(rawcode = request.POST["code"],
-               serialcode = parsed)
+               # serialcode = parsed)
                # thiscode.save()
                return HttpResponse(simplejson.dumps({"ID": 0 , "parsed":parsed}), 'application/json')
           # elif request.method == "GET":
