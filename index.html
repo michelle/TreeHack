@@ -20,7 +20,11 @@
       for (var name in types) {
         count += 1;
       }
+<<<<<<< HEAD
 	  _x = _x - (count / 2 * 100);
+=======
+	  _x = _x - (count * 100);
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
       for (var name in types) {
         var alttext = types[name]['doc'];
 		_x += 100;
@@ -58,6 +62,7 @@
       });
 	  return _y;
     }
+<<<<<<< HEAD
     
     expand = function(current, x, y) {
       var count = 0;
@@ -192,6 +197,142 @@
       }
     }
     
+=======
+    
+    expand = function(current, x, y) {
+      var count = 0;
+      for (var key in current) {
+        count += 1;
+      }
+      if (current.hasOwnProperty('classes')) {
+		var i = 0;
+	  for (var name in current['classes']) {
+			
+          var newX = (i - count / 2) * 600 / count + x + 150;
+			i += 1;
+          var newY = Math.floor(Math.random()*50) + y - 100;
+          var tit = new String();
+        
+          if (current['classes'][name].hasOwnProperty('doc')) {
+            tit = current['classes'][name]['doc'];
+          }
+          
+          current['classes'][name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: newX, y: newY, fruit: current["classes"][name]}).addClass("classFruit").attr('title',tit).css({left: newX, top: newY}).toggle(function(event){
+
+           var data = $(this).data('info');
+          if ( event.altKey ) {
+             snippet.gotoLine( data.fruit.lineno);
+          }
+
+
+           expand(data.fruit, data.x, data.y);
+          }, function(event){
+            var data = $(this).data('info');
+          if ( event.altKey ) {
+             snippet.gotoLine( data.fruit.lineno);
+          }
+
+
+            removeChildren(data.fruit);
+          }).appendTo("#growsOnTrees");
+        }
+      }
+      
+      if (current.hasOwnProperty('functions')) {
+		var i = 0;
+        for (var name in current['functions']) {
+          var newX = (i - count / 2) * 600 / count + x + 150;
+			i += 1;
+          var newY = Math.floor(Math.random()*50) + y - 100;
+          var tit = new String();
+        
+          if (current['functions'][name].hasOwnProperty('doc')) {
+            tit = current['functions'][name]['doc'];
+          }
+          current['functions'][name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: newX, y: newY, fruit: current["functions"][name]}).addClass("methodFruit").attr('title',tit).css({left: newX, top: newY}).toggle(function(event){
+
+            var data = $(this).data('info');
+          if ( event.altKey ) {
+             snippet.gotoLine( data.fruit.lineno);
+          }
+
+
+            expand(data.fruit, data.x, data.y);
+          }, function(event){
+            var data = $(this).data('info');
+          if ( event.altKey ) {
+             snippet.gotoLine( data.fruit.lineno);
+          }
+
+
+            removeChildren(data.fruit);
+          }).appendTo("#growsOnTrees");
+        }
+      }
+      
+      if (current.hasOwnProperty('variables')) {
+		var i = 0;
+        for (var name in current['variables']) {
+          var newX = (i - count / 2) * 600 / count + x + 150;
+			i += 1;
+          var newY = Math.floor(Math.random()*50) - 100 + y;
+          var tit = new String();
+        
+          if (current['variables'].hasOwnProperty('doc')) {
+            tit = current['variables']['doc'];
+          }
+
+          current['variables'][name]['el'] =  $("<div></div>").text(name).data('info', {name: name, x: newX, y: newY, fruit: current["variables"][name]}).addClass("varFruit").css({left: newX, top: newY}).toggle(function(event){
+
+            var data = $(this).data('info');
+          if ( event.altKey ) {
+             snippet.gotoLine( data.fruit.lineno);
+          }
+
+
+            expand(data.fruit, data.x, data.y);
+          }, function(event){
+            var data = $(this).data('info');
+          if ( event.altKey ) {
+             snippet.gotoLine( data.fruit.lineno);
+          }
+
+
+            removeChildren(data.fruit);
+          }).appendTo("#growsOnTrees");
+          
+        }
+      }
+      $('#growsOnTrees div').hover(function() {
+        $('#growsOnTrees div').stop().animate({'opacity': '.2'});
+        $(this).stop().animate({'opacity': '1'});
+      }, function() {
+        $('#growsOnTrees div').stop().animate({'opacity': '.6'});
+      });
+    }
+    
+    removeChildren = function(current) {
+      for(var key in current.classes) {
+        removeChildren(current.classes[key]);
+        if(current.classes[key].el) {
+          current.classes[key].el.remove();
+        }
+      }
+      for(var key in current.functions) {
+        removeChildren(current.functions[key]);
+        if(current.functions[key].el) {
+          current.functions[key].el.remove();
+        }
+      }
+      for(var key in current.variables) {
+        removeChildren(current.variables[key]);
+        if(current.variables[key].el) {
+          current.variables[key].el.remove();
+        }
+      }
+    }
+    
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
       $('#pushThisButton').click(function() {
         $('#semiRelevantInfo').slideToggle('slow', function() {
           $('#editor, #containsCodeEditor').css({ 'height' : '500px' });
@@ -222,7 +363,11 @@
           var PythonMode = require("ace/mode/python").Mode;
           snippet.getSession().setMode(new PythonMode());
           snippet.getSession().setValue(editor.getSession().getValue());
+<<<<<<< HEAD
 
+=======
+          
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
           $('#share').append('Share your code:<br><textarea>http://5.80.171.76:8000/'+id+'</textarea>');
           $('#showFrom').animate({ 'opacity' : '0' });
           $('#editor, #containsCodeEditor').css({ 'height' : '0px' });
@@ -235,6 +380,7 @@
           }
     });
   });*/
+<<<<<<< HEAD
 
 
   loadNextThings = function() {
@@ -256,11 +402,14 @@
         $('#share').append('Share your code:<br><textarea>http://5.80.171.76:8000/'+id+'</textarea>');
       
   };
+=======
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
   
     $('#smallify').click(function() {
         $.post('/transferCode/', {'code': editor.getSession().getValue()}, function(dic) {
           all = dic['parsed'];
           id = dic['ID'];
+<<<<<<< HEAD
           console.log( all );
           if ( all instanceof Object ) {
            loadNextThings();
@@ -270,15 +419,47 @@
         });
       });
 
+=======
+      
+          draw(all.classes, 'classFruit', 270, -Math.floor(Math.random()*50) + 175);
+          draw(all.variables, 'varFruit', 270, -Math.floor(Math.random()*50) + 375);
+          draw(all.functions, 'methodFruit', 270, -Math.floor(Math.random()*50) + 315);
+          
+          snippet = ace.edit("snippet");
+          var PythonMode = require("ace/mode/python").Mode;
+          snippet.getSession().setMode(new PythonMode());
+          snippet.getSession().setValue(editor.getSession().getValue());
+          
+          $('#share').append('Share your code:<br><textarea>http://5.80.171.76:8000/'+id+'</textarea>');
+        });
+        
+        $('#showFrom').animate({ 'opacity' : '0' });
+        $('#editor, #containsCodeEditor').css({ 'height' : '0px' });
+      
+        $('#contentButNotHappy').fadeToggle('slow');
+        $('#contentAndNotSad').fadeToggle('slow');
+      
+      });
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
       $('#updateThisCrap').click(function() {
         $.post('/transferCode/', {'code': snippet.getSession().getValue()}, function(dic) {
           all = dic['parsed'];
           id = dic['ID'];
+<<<<<<< HEAD
           $('#growsOnTrees').empty();
           $('#share').empty();
           draw(all.classes, 'classFruit', 200, -Math.floor(Math.random()*50) + 175);
           draw(all.variables, 'varFruit', 200, -Math.floor(Math.random()*50) + 375);
           draw(all.functions, 'methodFruit', 200, -Math.floor(Math.random()*50) + 315);
+=======
+          
+          $('#growsOnTrees').empty();
+          $('#share').empty();
+          
+          draw(all.classes, 'classFruit', 270, -Math.floor(Math.random()*50) + 175);
+          draw(all.variables, 'varFruit', 270, -Math.floor(Math.random()*50) + 375);
+          draw(all.functions, 'methodFruit', 270, -Math.floor(Math.random()*50) + 315);
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
           $('#share').append('Share your code:<br><textarea>http://5.80.171.76:8000/'+id+'</textarea>');
         });
       });
@@ -312,7 +493,11 @@
   <div id="editor"></div>
   </div>
   <center><button class="bigBlack" id="smallify">Treeify Me!</button><br><span class="parseError"></span></center>
+<<<<<<< HEAD
   <iframe src="http://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink($post->ID)); ?>&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden; width:450px; height:60px;"></iframe>
+=======
+  
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
   </div>
 
   

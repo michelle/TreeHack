@@ -214,7 +214,19 @@ $(window).load( function() {
       snippet.getSession().setMode(new PythonMode());
       snippet.getSession().setValue(code);
       snippet.setReadOnly(true);
+<<<<<<< HEAD
      
+=======
+      $('#rightSide').append('<div id="fb-root"></div>');
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+      $('#rightSide').append('<div class="fb-like" data-href="'+window.location.href+'" data-send="true" data-width="450" data-show-faces="true" data-font="verdana"></div>');
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
     });
 
 });
@@ -222,6 +234,16 @@ $(window).load( function() {
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
 
 <div id="eighteenAndUnderBar">
   <a href="/">Home</a>
@@ -241,8 +263,12 @@ $(window).load( function() {
   alt + click to see which line each element comes from!
   <div id="containsSnippet" class="right">
   <div id="snippet"></div>
+<<<<<<< HEAD
   </div><br><br><a href="http://www.facebook.com/share.php?u=thispage" id="noborder"><button class="bigBlack" id="share">Share</button></a><br>
   <iframe src="http://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink($post->ID)); ?>&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden; width:450px; height:60px;"></iframe></div>
+=======
+  </div></div>
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
 </div>
 </body>
 

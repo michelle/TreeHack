@@ -74,7 +74,11 @@ a {
   color: #fff;
 }
 
+<<<<<<< HEAD
 #updateThisCrap, #smallify, #share {
+=======
+#updateThisCrap, #smallify {
+>>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
   height: 50px;
   line-height: 20px;
   border: 0px;
