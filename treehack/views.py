@@ -13,15 +13,14 @@ from django.template import RequestContext, Template, Context
 def GiveGetCode(request):
      if request.is_ajax():
           if request.method == "POST":
-               # disabling this for now, before I set up db
                parsed = HACK(request.POST["code"])
-               # thiscode = Code(rawcode = request.POST["code"],
-               # serialcode = parsed)
-               # thiscode.save()
+               thiscode = Code(rawcode = request.POST["code"],
+               serialcode = parsed)
+               thiscode.save()
                return HttpResponse(simplejson.dumps({"ID": 0 , "parsed":parsed}), 'application/json')
-          # elif request.method == "GET":
-               # thiscode = Code.objects.get(id=request.GET["ID"])
-               # return HttpResponse(simplejson.dumps({"raw":thiscode.rawcode, "parsed":HACK(thiscode.rawcode)}), 'application/json')
+          elif request.method == "GET":
+               thiscode = Code.objects.get(id=request.GET["ID"])
+               return HttpResponse(simplejson.dumps({"raw":thiscode.rawcode, "parsed":HACK(thiscode.rawcode)}), 'application/json')
           else:
                return HttpResponse( simplejson.dumps( {'4':3} ) )
      else:
