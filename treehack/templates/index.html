@@ -2,6 +2,9 @@
 
 {% block javascript %}
 <script type="text/javascript">
+{% block csrf %}
+  {{ block.super }}
+{% block csrf %}
 $( document ).ready(function() {
         countVars = function( things ) {
             var ret = 0;
@@ -150,7 +153,10 @@ $( document ).ready(function() {
   <div id="containsCodeEditor">
   <div id="editor"></div>
   </div>
-  <center><button class="bigBlack" id="smallify">Treeify Me!</button><br><span class="parseError"></span></center>
+  <center>
+    
+    <button class="bigBlack" id="smallify">Treeify Me!</button><br>
+    <span class="parseError"></span></center>
   </div>
 </div>
 <div id="contentAndNotSad">
