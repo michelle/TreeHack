@@ -1,7 +1,6 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
-from treehack.models import *
-#from forms import *
+from codes.models import *
 from django.core import serializers
 from django.utils import simplejson
 from parse import *
