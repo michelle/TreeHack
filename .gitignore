@@ -8,3 +8,9 @@
 .dropbox
 .DS_Store
 Icon*
+bin
+build
+include
+lib
+.Python
+*.pyc
