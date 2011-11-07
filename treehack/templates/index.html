@@ -3,6 +3,11 @@
 {% block javascript %}
 <script type="text/javascript">
 
+$.ajaxSetup({
+  data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+
+/*
 $.ajaxSetup({ 
      beforeSend: function(xhr, settings) {
          function getCookie(name) {
@@ -26,6 +31,7 @@ $.ajaxSetup({
          }
      } 
 });
+*/
 
 $( document ).ready(function() {
         countVars = function( things ) {
