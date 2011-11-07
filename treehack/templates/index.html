@@ -19,7 +19,19 @@ $('#smallify').click(function(e) {
                 all = dic['parsed'];
                 id = dic['ID'];
                 if ( all instanceof Object ) {
-                    drawInit();
+                   drawInit( all );
+                   $('#showFrom').animate({ 'opacity' : '0' });
+                   $('#editor, #containsCodeEditor').css({ 'height' : '0px' });
+    
+                   $('#contentButNotHappy').fadeToggle('slow');
+                   $('#contentAndNotSad').fadeToggle('slow');
+    
+                   snippet = ace.edit("snippet");
+                   var PythonMode = require("ace/mode/python").Mode;
+                   snippet.getSession().setMode(new PythonMode());
+                   snippet.getSession().setValue(editor.getSession().getValue());
+            
+    $('#share').append('Share your code:<br><textarea>'+window.location.href+id+'</textarea>');
                 } else {
                     $(".parseError").html( all );
                 }
@@ -32,9 +44,7 @@ $('#updateThisCrap').click(function() {
                 id = dic['ID'];
                 $('#growsOnTrees').empty();
                 $('#share').empty();
-                var base = { x : 521/2, y : 658/ 2 };
-                var length = base.x / 2;
-                draw( all, base, length, true );
+                drawInit( all );
                 $('#share').append('Share your code:<br><textarea>'+window.location.href+id+'</textarea>');
             });
     });

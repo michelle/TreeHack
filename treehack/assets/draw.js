@@ -69,17 +69,4 @@ drawInit = function( all ) {
     var length = base.x / 2;
     
     draw( all, base, length, true );
-
-    $('#showFrom').animate({ 'opacity' : '0' });
-    $('#editor, #containsCodeEditor').css({ 'height' : '0px' });
-    
-    $('#contentButNotHappy').fadeToggle('slow');
-    $('#contentAndNotSad').fadeToggle('slow');
-    
-    snippet = ace.edit("snippet");
-    var PythonMode = require("ace/mode/python").Mode;
-    snippet.getSession().setMode(new PythonMode());
-    snippet.getSession().setValue(editor.getSession().getValue());
-            
-    $('#share').append('Share your code:<br><textarea>'+window.location.href+id+'</textarea>');
 };
