@@ -14,7 +14,7 @@ def GiveGetCode(request):
      if request.is_ajax():
           if request.method == "POST":
                # disabling this for now, before I set up db
-               # parsed = HACK(request.POST["code"])
+               parsed = HACK(request.POST["code"])
                # thiscode = Code(rawcode = request.POST["code"],
                # serialcode = parsed)
                # thiscode.save()
