@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block assets %}
+  {{ block.super }}
+{% endblock %}
+
 {% block javascript %}
 <script type="text/javascript" src="http://treehack.s3.amazonaws.com/assets/draw.js"></script>
 {% endblock %}
