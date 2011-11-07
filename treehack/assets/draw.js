@@ -21,8 +21,8 @@ draw = function( things, base, length ) {
         if ( kind != 'vars' && kind != 'methods' && kind != 'classes' ) continue;
         for( var name in things[ kind ] ) { var item = things[ kind ][ name ];
             if( count == 1 ) {
-                var X = base.x + 10 * Math.cos( angle );
-                var Y = base.y + 10 * Math.sin( angle );
+                var X = base.x + 30 * Math.cos( angle );
+                var Y = base.y + 30 * Math.sin( angle );
                 var f = 1;
             }
             else {
