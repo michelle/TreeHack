@@ -1,13 +1,11 @@
 import ast, sys
 
-globals = { "classes" : {}, "vars" : {}, "methods" : {} }
+globals = { "classes" : {}, "variables" : {}, "methods" : {} }
 
 # BUILDS UP THE REPRESENATION OF THE TREE
 def Hack( node, scope ):
     if hasattr( node, "Hack" ):
         node.Hack( scope )
-    else:
-        print "AHH NODE", node, "Doesnt have HACK METHOD"
 
 def HackMap( nodes, scope ):
     for node in nodes:
@@ -21,20 +19,20 @@ def ImportHack( self, scope ):
         name.Variablize( scope )
 
 def ImportFormHack( self, scope ):
-    pass # NOT SURE WHAT TO DO..
+    pass
     
 def ClassHack( self, scope ):
-    classScope = scope[ "classes" ][ self.name ] = { "classes" : {}, "vars" : {}, "methods" : {}, "lineno" : self.lineno, "doc" : ast.get_docstring( self ) }
-    map( lambda node : Hack( node, classScope ), self.body )
+    classScope = scope[ "classes" ][ self.name ] = { "classes" : {}, "variables" : {}, "methods" : {}, "lineno" : self.lineno, "doc" : ast.get_docstring( self ) }
+    HackMap( self.body, classScope )
 
 def FunctionDefHack( self, scope ):
-    newScope = scope["methods"][ self.name ] = { "lineno": self.lineno, "doc" : ast.get_docstring( self ), "classes" : {}, "methods" : {}, "vars": {} }
+    newScope = scope["methods"][ self.name ] = { "lineno": self.lineno, "doc" : ast.get_docstring( self ), "classes" : {}, "methods" : {}, "variables": {} }
     for arg in self.args.args:
         arg.Variablize( newScope )
     if self.args.vararg:
-        newScope[ "vars" ][ "*" + self.args.vararg ] = { "lineno": self.lineno, "classes" : {}, "methods" : {}, "vars" : {} }
+        newScope[ "variables" ][ "*" + self.args.vararg ] = { "lineno": self.lineno, "classes" : {}, "methods" : {}, "variables" : {} }
     if self.args.kwarg:
-        newScope[ "vars" ][ "**" + self.args.kwarg ] = { "lineno": self.lineno, "classes" : {}, "methods" : {}, "vars" : {} }
+        newScope[ "variables" ][ "**" + self.args.kwarg ] = { "lineno": self.lineno, "classes" : {}, "methods" : {}, "variables" : {} }
 
 def AssignHack( self, scope ):
     for target in self.targets:
@@ -46,17 +44,18 @@ def IfHack( self, scope ):
 
 # VARIABLIZES
 def NameVariablize( self, scope ):
-    scope[ "vars" ][ self.id ] = { "lineno": self.lineno, "classes" : {}, "methods" : {}, "vars" : {} }
+    if self.id != "self":
+        scope[ "variables" ][ self.id ] = { "lineno": self.lineno, "classes" : {}, "methods" : {}, "variables" : {} }
 
 def TupleVariablize( self, scope ):
     for name in self.elts:
         name.Variablize( scope )
 
 def AttributeVariablize( self, scope ):
-    scope[ "vars" ][ self.Id() ] = ""
+    scope[ "variables" ][ self.Id() ] = ""
 
 def aliasVariablize( self, scope ):
-    scope[ "vars" ][ self.name ] = self.asname if self.asname else ""
+    scope[ "variables" ][ self.name ] = self.asname if self.asname else ""
 
 def NameId( self ):
     return self.id
@@ -94,14 +93,15 @@ def HACK( text ):
     global globals
     try:
         Hack( ast.parse( text ), globals )
-    except SyntaxError as s:
-        return "Syntax Error : " + str( s )
+    except SyntaxError as e:
+        return "Syntax Error " + str( e )
+    Hack( ast.parse( text ), globals )
     ret = globals
-    globals = { "classes" : {}, "vars" : {}, "methods" : {} }
+    globals = { "classes" : {}, "variables" : {}, "methods" : {} }
     return ret
 
-'''
+
 if __name__ == '__main__':
     if len( sys.argv ) > 1:
-        printStr( HACK( "\n".join( open( sys.argv[-1] ).readlines() ) ) )
-'''
+        printStr( HACK( ast.parse( "\n".join( open( sys.argv[-1] ).readlines() ) ) ) )
+

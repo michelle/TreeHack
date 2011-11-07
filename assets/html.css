@@ -74,11 +74,8 @@ a {
   color: #fff;
 }
 
-<<<<<<< HEAD
-#updateThisCrap, #smallify, #share {
-=======
+
 #updateThisCrap, #smallify {
->>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
   height: 50px;
   line-height: 20px;
   border: 0px;
@@ -128,7 +125,7 @@ a {
   margin-top:50px;
 }
 
-.varFruit, .methodFruit, .classFruit {
+.varsFruit, .methodsFruit, .classesFruit {
   background-color: #cb0030;
   cursor: pointer;
   font-size: 15px;
@@ -142,11 +139,11 @@ a {
   opacity: .6;
 }
 
-.varFruit {
+.varsFruit {
   background-color: #7f7648;
 }
 
-.methodFruit {
+.methodsFruit {
   background-color: #67ad4b;
 }
 
