@@ -13,21 +13,24 @@
     {{ block.super }}
 
   <script>
+  $( window ).load( function(){
     var lastIndex = window.location.pathname.length - 1;
     var id = window.location.pathname.substring(1, lastIndex);
     $.get('../transferCode/', {'ID': id}, function(dic) {
       code = dic['raw'];
       all = dic['parsed'];
-      
-      draw(all.classes, 'classFruit', 270, -Math.floor(Math.random()*50) + 175);
-      draw(all.variables, 'varFruit', 270, -Math.floor(Math.random()*50) + 375);
-      draw(all.functions, 'methodFruit', 270, -Math.floor(Math.random()*50) + 315);
+      var base = { x : 521/2, y : 658/ 2 };
+      var length = base.x / 2;
+      draw( all, base, length, true );
+
       snippet = ace.edit("snippet");
       var PythonMode = require("ace/mode/python").Mode;
       snippet.getSession().setMode(new PythonMode());
       snippet.getSession().setValue(code);
       snippet.setReadOnly(true);
+
       $('#rightSide').append('<div id="fb-root"></div>');
+
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
@@ -37,9 +40,8 @@
     }(document, 'script', 'facebook-jssdk'));
       $('#rightSide').append('<div class="fb-like" data-href="'+window.location.href+'" data-send="true" data-width="450" data-show-faces="true" data-font="verdana"></div>');
     });
-
-});</script>
-
+});
+</script>
 {% endblock %}
 
 {% block content %}

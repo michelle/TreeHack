@@ -118,7 +118,6 @@ $( document ).ready(function() {
                         $('#share').empty();
                         var base = { x : 521/2, y : 658/ 2 };
                         var length = base.x / 2;
-
                         draw( all, base, length, true );
                         $('#share').append('Share your code:<br><textarea>'+window.location.href+id+'</textarea>');
                     });
