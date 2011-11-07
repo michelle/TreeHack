@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from codes.models import *
 from django.core import serializers
 from django.utils import simplejson
-from parser.parse import *
+from parse import *
 from django.shortcuts import render_to_response
 from django.template import RequestContext, Template, Context
 
