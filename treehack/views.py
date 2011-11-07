@@ -7,8 +7,6 @@ from parse import *
 from django.shortcuts import render_to_response
 from django.template import RequestContext, Template, Context
 
-#secure all evals!
-
 def GiveGetCode(request):
      if request.is_ajax():
           if request.method == "POST":
@@ -18,13 +16,14 @@ def GiveGetCode(request):
                thiscode.save()
                return HttpResponse(simplejson.dumps({"ID": thiscode.id , "parsed":parsed}), 'application/json')
           elif request.method == "GET":
+               # probably want to return a 404 if object doesnt exist
                thiscode = Code.objects.get(id=request.GET["ID"])
                return HttpResponse(simplejson.dumps({"raw":thiscode.rawcode, "parsed":HACK(thiscode.rawcode)}), 'application/json')
           else:
                return HttpResponse( simplejson.dumps( {'4':3} ) )
      else:
-               return HttpResponse( simplejson.dumps( {'4':3} ) )
+          # probably want to return a 404 or something
+          return HttpResponse( simplejson.dumps( {'4':3} ) )
 
 def DisplayCode(request, ID):
      return render_to_response('results.html', context_instance=RequestContext(request))
-     
