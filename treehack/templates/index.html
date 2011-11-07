@@ -130,7 +130,8 @@ $( document ).ready(function() {
             
         };
 
-        $('#smallify').click(function() {
+        $('#smallify').click(function(e) {
+                e.preventDefault;
                 $.post('/transferCode/', {'code': editor.getSession().getValue()}, function(dic) {
                         all = dic['parsed'];
                         id = dic['ID'];
