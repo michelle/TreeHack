@@ -22,7 +22,7 @@ def GiveGetCode(request):
                thiscode = Code.objects.get(id=request.GET["ID"])
                return HttpResponse(simplejson.dumps({"raw":thiscode.rawcode, "parsed":HACK(thiscode.rawcode)}), 'application/json')
           else:
-               return HttpResponse( simplejson.dumps( {'3':3} ) )
+               return HttpResponse( simplejson.dumps( {'4':3} ) )
      else:
           return HttpResponse( simplejson.dumps( {'3':3} ) )
 
