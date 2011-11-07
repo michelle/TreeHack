@@ -6,8 +6,6 @@ globals = { "classes" : {}, "variables" : {}, "functions" : {} }
 def Hack( node, scope ):
     if hasattr( node, "Hack" ):
         node.Hack( scope )
-    else:
-        print "AHH NODE", node, "Doesnt have HACK METHOD"
 
 def HackMap( nodes, scope ):
     for node in nodes:
@@ -21,14 +19,20 @@ def ImportHack( self, scope ):
         name.Variablize( scope )
 
 def ImportFormHack( self, scope ):
-    pass # NOT SURE WHAT TO DO..
+    pass
     
 def ClassHack( self, scope ):
-    classScope = scope[ "classes" ][ self.name ] = { "variables" : {}, "functions" : {}, "lineno" : self.lineno, "doc" : ast.get_docstring( self ) }
-    map( lambda node : Hack( node, classScope ), self.body )
+    classScope = scope[ "classes" ][ self.name ] = { "classes" : {}, "variables" : {}, "functions" : {}, "lineno" : self.lineno, "doc" : ast.get_docstring( self ) }
+    HackMap( self.body, classScope )
 
 def FunctionDefHack( self, scope ):
-    newScope = scope["functions"][ self.name ] = { "lineno": self.lineno, "doc" : ast.get_docstring( self ) }
+    newScope = scope["functions"][ self.name ] = { "lineno": self.lineno, "doc" : ast.get_docstring( self ), "classes" : {}, "functions" : {}, "variables": {} }
+    for arg in self.args.args:
+        arg.Variablize( newScope )
+    if self.args.vararg:
+        newScope[ "variables" ][ "*" + self.args.vararg ] = { "lineno": self.lineno, "classes" : {}, "functions" : {}, "variables" : {} }
+    if self.args.kwarg:
+        newScope[ "variables" ][ "**" + self.args.kwarg ] = { "lineno": self.lineno, "classes" : {}, "functions" : {}, "variables" : {} }
 
 def AssignHack( self, scope ):
     for target in self.targets:
@@ -40,7 +44,8 @@ def IfHack( self, scope ):
 
 # VARIABLIZES
 def NameVariablize( self, scope ):
-    scope[ "variables" ][ self.id ] = { "lineno": self.lineno }
+    if self.id != "self":
+        scope[ "variables" ][ self.id ] = { "lineno": self.lineno, "classes" : {}, "functions" : {}, "variables" : {} }
 
 def TupleVariablize( self, scope ):
     for name in self.elts:
@@ -85,9 +90,17 @@ def printStr( d, indent=0 ):
 
 
 def HACK( text ):
-    Hack( ast.parse( text ), globals )
-    return globals
+    global globals
+    try:
+        Hack( ast.parse( text ), globals )
+    except SyntaxError as e:
+        return "Syntax Error " + str( e )
+    ret = globals
+    globals = { "classes" : {}, "variables" : {}, "functions" : {} }
+    return ret
 
-if __name__=='__main__':
-    HACK( ''.join( open( sys.argv[ 1 ] ).readlines() ) )
-    printStr( globals )
+
+if __name__ == '__main__':
+    if len( sys.argv ) > 1:
+        printStr( HACK( ast.parse( "\n".join( open( sys.argv[-1] ).readlines() ) ) ) )
+

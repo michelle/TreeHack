@@ -30,6 +30,7 @@ html, body {
   position: relative;
   border-bottom: 1px dashed #000;
   top: 10px;
+  z-index: 100;
   color: #000;
 }
 
@@ -59,6 +60,7 @@ a {
 }
 
 #showForm {
+  margin-top: 20px;
   opacity: 0;
 }
 
@@ -72,10 +74,15 @@ a {
   color: #fff;
 }
 
-#smallify {
+#updateThisCrap, #smallify, #share {
   height: 50px;
   line-height: 20px;
   border: 0px;
+  margin: 5px;
+}
+
+#noborder {
+  border = 0px;
 }
 
 #semiRelevantInfo {
@@ -88,12 +95,17 @@ a {
   padding-bottom: 100px;
 }
 
-#contentAndNotSad {
+#contentAndNotSad, #contentAndNotHuan {
   text-align: center;
   padding-bottom: 100px;
-  width: 800px;
+  width: 1120px;
   margin: 0 auto;
   position: relative;
+  z-index: 2;
+}
+
+#contentAndNotSad {
+  display: none;
 }
 
 .left {
@@ -109,18 +121,29 @@ a {
 #treeOnMyPage {
   opacity: 0.2;
   z-index: 1;
+  margin-top:50px;
 }
 
-.fruit {
+.varFruit, .methodFruit, .classFruit {
   background-color: #cb0030;
   cursor: pointer;
   font-size: 15px;
   line-height: 15px;
   min-height: 15px;
   min-width: 15px;
+  border-radius: 25px;
   color: #fff;
-  padding: 15px;
+  padding: 10px;
   position: absolute;
+  opacity: .6;
+}
+
+.varFruit {
+  background-color: #7f7648;
+}
+
+.methodFruit {
+  background-color: #67ad4b;
 }
 
 #temp {
@@ -128,4 +151,49 @@ a {
   left: 200px;
   border-radius: 25px;
 }
-  
+
+#share {
+  margin-top: 20px;
+  line-height: 18px;
+  font-size: 18px;
+}
+
+#snippet, #containsSnippet {
+  width: 500px;
+  height: 500px;
+  line-height: 30px;
+}
+
+#containsSnippet {
+  text-align: left;
+}
+
+.right {
+  float: right;
+}
+
+#othahContainer {
+  float: right;
+  width: 500px;
+  position: relative;
+  text-align: center;
+}
+
+#michelleIsContent {
+  width: 500px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+#sunSunSun {
+  background-color: #ffd503;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: 500px;
+  top: 10px;
+  border-radius: 100px;
+}
