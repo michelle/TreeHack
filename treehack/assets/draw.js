@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-
         countVars = function( things ) {
             var ret = 0;
             for( var kind in things ) {
@@ -18,22 +17,18 @@ $( document ).ready(function() {
             for( var kind in things ) {
                 if ( kind != 'vars' && kind != 'methods' && kind != 'classes' ) continue;
                 for( var name in things[ kind ] ) { var item = things[ kind ][ name ];
-
                     if( count == 1 && first) {
                         var X = base.x;
                         var Y = base.y;
                         var f = 1;
                     }
-
                     else {
                         var X = base.x + length * Math.cos( angle );
                         var Y = base.y + length * Math.sin( angle );
                         var f = .4
                     }
-
                     var tit = 'nothing';
                     //if ( item.doc ) { tit = item.doc }
-
                     item.el =
                         $("<div></div>").text( name ).data('info', { base : { x: X, y: Y }, length : length * f ,fruit : item }).
                         addClass( kind + 'Fruit' ).attr('title', tit ).css({left: X, top: Y}).toggle( function(event){
@@ -102,7 +97,8 @@ $( document ).ready(function() {
             
         };
 
-        $('#smallify').click(function() {
+        $('#smallify').click(function(e) {
+                e.preventDefault;
                 $.post('/transferCode/', {'code': editor.getSession().getValue()}, function(dic) {
                         all = dic['parsed'];
                         id = dic['ID'];
