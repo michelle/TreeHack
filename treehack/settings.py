@@ -83,7 +83,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-# ROOT_URLCONF = 'TreeHack.urls'
+ROOT_URLCONF = 'treeHack.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(SITE_ROOT, 'templates'),
