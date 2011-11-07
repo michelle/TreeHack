@@ -11,7 +11,7 @@ from django.template import RequestContext, Template, Context
 #secure all evals!
 
 def GiveGetCode(request):
-     assert request.is_ajax(), "WTF?" + str( request )
+     assert request.is_ajax(), "WTF?" + str( request ) + str( request.method )
      if request.is_ajax():
           if request.method == "POST":
                parsed = HACK(request.POST["code"])
