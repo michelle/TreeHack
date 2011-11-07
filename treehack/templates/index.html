@@ -3,6 +3,8 @@
 {% block javascript %}
 <script type="text/javascript" src="http://treehack.s3.amazonaws.com/assets/draw.js"></script>
 <script type="text/javascript">
+$( window ).load( function(){
+
 $('#pushThisButton').click(function() {
         $('#semiRelevantInfo').slideToggle('slow', function() {
                 $('#editor, #containsCodeEditor').css({ 'height' : '500px' });
@@ -48,6 +50,7 @@ $('#updateThisCrap').click(function() {
                 $('#share').append('Share your code:<br><textarea>'+window.location.href+id+'</textarea>');
             });
     });
+});
 </script>
 
 {% endblock %}
