@@ -7,14 +7,6 @@ MEDIA_ROOT = STATIC_DOC_ROOT = os.path.join(SITE_ROOT, 'assets')
 MEDIA_URL = '/assets/'
 
 
-
-if socket.gethostname() == 'nzhang-laptop':
-    DEBUG = TEMPLATE_DEBUG = True
-    MEDIA_ROOT = 'C:/django/TreeHack/assets/'
-    STATIC_DOC_ROOT = 'C:/django/TreeHack/assets/'
-else:
-    DEBUG = TEMPLATE_DEBUG = False
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -91,7 +83,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'TreeHack.urls'
+# ROOT_URLCONF = 'TreeHack.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(SITE_ROOT, 'templates'),
