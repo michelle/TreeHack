@@ -6,6 +6,8 @@ globals = { "classes" : {}, "variables" : {}, "functions" : {} }
 def Hack( node, scope ):
     if hasattr( node, "Hack" ):
         node.Hack( scope )
+    else:
+        print "AHH NODE", node, "Doesnt have HACK METHOD"
 
 def HackMap( nodes, scope ):
     for node in nodes:
@@ -19,11 +21,11 @@ def ImportHack( self, scope ):
         name.Variablize( scope )
 
 def ImportFormHack( self, scope ):
-    pass
+    pass # NOT SURE WHAT TO DO..
     
 def ClassHack( self, scope ):
     classScope = scope[ "classes" ][ self.name ] = { "classes" : {}, "variables" : {}, "functions" : {}, "lineno" : self.lineno, "doc" : ast.get_docstring( self ) }
-    HackMap( self.body, classScope )
+    map( lambda node : Hack( node, classScope ), self.body )
 
 def FunctionDefHack( self, scope ):
     newScope = scope["functions"][ self.name ] = { "lineno": self.lineno, "doc" : ast.get_docstring( self ), "classes" : {}, "functions" : {}, "variables": {} }
@@ -44,8 +46,7 @@ def IfHack( self, scope ):
 
 # VARIABLIZES
 def NameVariablize( self, scope ):
-    if self.id != "self":
-        scope[ "variables" ][ self.id ] = { "lineno": self.lineno, "classes" : {}, "functions" : {}, "variables" : {} }
+    scope[ "variables" ][ self.id ] = { "lineno": self.lineno, "classes" : {}, "functions" : {}, "variables" : {} }
 
 def TupleVariablize( self, scope ):
     for name in self.elts:
@@ -91,20 +92,16 @@ def printStr( d, indent=0 ):
 
 def HACK( text ):
     global globals
-<<<<<<< HEAD
     try:
         Hack( ast.parse( text ), globals )
-    except SyntaxError as e:
-        return "Syntax Error " + str( e )
-=======
-    Hack( ast.parse( text ), globals )
->>>>>>> 429cbdea6e67b91ab352b5ec3e1dc812ac59f598
+    except SyntaxError as s:
+        return "Syntax Error : " + str( s )
     ret = globals
     globals = { "classes" : {}, "variables" : {}, "functions" : {} }
     return ret
 
-
+'''
 if __name__ == '__main__':
     if len( sys.argv ) > 1:
-        printStr( HACK( ast.parse( "\n".join( open( sys.argv[-1] ).readlines() ) ) ) )
-
+        printStr( HACK( "\n".join( open( sys.argv[-1] ).readlines() ) ) )
+'''

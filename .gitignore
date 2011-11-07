@@ -3,3 +3,8 @@
 
 # Compiled Files
 *.pyc
+
+#Other files
+.dropbox
+.DS_Store
+
