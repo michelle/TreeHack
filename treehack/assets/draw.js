@@ -1,3 +1,7 @@
+depthVars = function( things, d ) {
+    return Math.max.apply( Math, things.map( function(e) { return depthVars( e, d + 1 ) } ));
+}
+
 countVars = function( things ) {
     var ret = 0;
     for( var kind in things ) {
@@ -10,15 +14,17 @@ countVars = function( things ) {
 };
 
 draw = function( things, base, length, first ) {
+    var dx = 10;
+    var dy = 10;
     count = countVars( things );
     var increment = 2 * Math.PI / count;
     var angle = Math.random()*2 * Math.PI;
     for( var kind in things ) {
         if ( kind != 'vars' && kind != 'methods' && kind != 'classes' ) continue;
         for( var name in things[ kind ] ) { var item = things[ kind ][ name ];
-            if( count == 1 && first) {
-                var X = base.x;
-                var Y = base.y;
+            if( count == 1 ) {
+                var X = base.x - dx ;
+                var Y = base.y - dy ;
                 var f = 1;
             }
             else {
